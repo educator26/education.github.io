@@ -1,0 +1,620 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Научное сообщество | Лицей им. Имя — Лаборатория мысли</title>
+    <!-- Google Fonts + Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f8fafc;
+            color: #0f172a;
+            scroll-behavior: smooth;
+            line-height: 1.5;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        /* glassmorphic navbar */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+            border-bottom: 1px solid rgba(100, 116, 139, 0.2);
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1e3c72, #2a5298, #00b4aa);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            letter-spacing: -0.3px;
+        }
+        .logo p {
+            font-size: 0.75rem;
+            color: #475569;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #1e293b;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+        .nav-links a:hover {
+            color: #2a5298;
+        }
+
+        .btn-outline-nav {
+            background: transparent;
+            border: 1.5px solid #2a5298;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2a5298;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .btn-outline-nav:hover {
+            background: #2a5298;
+            color: white;
+        }
+
+        /* hero section */
+        .hero {
+            background: linear-gradient(125deg, #eef2ff 0%, #ffffff 80%);
+            border-radius: 48px;
+            margin: 32px 0 48px;
+            padding: 64px 48px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.05);
+        }
+        .hero-text {
+            flex: 1.2;
+        }
+        .hero-badge {
+            background: #e0e7ff;
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #1e40af;
+            margin-bottom: 24px;
+        }
+        .hero-text h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(to right, #0f2b4d, #1e4a76, #0f766e);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+        .hero-text p {
+            font-size: 1.1rem;
+            color: #334155;
+            margin-bottom: 32px;
+            max-width: 550px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .btn-primary {
+            background: #1e3c72;
+            color: white;
+            border: none;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+            box-shadow: 0 8px 18px rgba(30,60,114,0.2);
+        }
+        .btn-primary:hover {
+            background: #0f2b4d;
+            transform: translateY(-2px);
+        }
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #1e3c72;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 700;
+            color: #1e3c72;
+            cursor: pointer;
+        }
+        .hero-stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 32px;
+        }
+        .hero-stats div span:first-child {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #1e3c72;
+        }
+        .hero-image i {
+            font-size: 12rem;
+            color: #b9c8f0;
+            filter: drop-shadow(4px 8px 12px rgba(0,0,0,0.1));
+        }
+
+        /* section common */
+        .section-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            letter-spacing: -0.3px;
+        }
+        .section-sub {
+            color: #475569;
+            margin-bottom: 40px;
+            border-left: 4px solid #2a5298;
+            padding-left: 18px;
+            font-weight: 500;
+        }
+        .section-header {
+            margin-bottom: 48px;
+        }
+
+        /* research areas cards */
+        .cards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin: 32px 0 56px;
+        }
+        .research-card {
+            background: white;
+            border-radius: 28px;
+            padding: 32px 24px;
+            transition: all 0.25s ease;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+        }
+        .research-card:hover {
+            transform: translateY(-6px);
+            border-color: #cbdff2;
+            box-shadow: 0 20px 30px -12px rgba(0,0,0,0.1);
+        }
+        .card-icon {
+            font-size: 2.5rem;
+            color: #2a5298;
+            margin-bottom: 20px;
+        }
+        .research-card h3 {
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+        }
+        .tag {
+            display: inline-block;
+            background: #eef2ff;
+            padding: 4px 12px;
+            border-radius: 30px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            margin-top: 16px;
+            color: #1e40af;
+        }
+
+        /* events slider style (horizontal scroll) */
+        .events-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 28px;
+            padding: 12px 4px 24px;
+            scrollbar-width: thin;
+        }
+        .event-card {
+            min-width: 300px;
+            background: white;
+            border-radius: 32px;
+            padding: 24px;
+            border-left: 6px solid #2a5298;
+            box-shadow: 0 8px 18px rgba(0,0,0,0.04);
+            transition: 0.2s;
+        }
+        .event-date {
+            font-weight: 700;
+            color: #2a5298;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+        .event-location {
+            font-size: 0.8rem;
+            color: #5b6e8c;
+            margin-top: 12px;
+        }
+
+        /* mentors / scientists */
+        .mentors-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 32px;
+            justify-content: center;
+            margin: 40px 0;
+        }
+        .mentor-card {
+            background: white;
+            border-radius: 40px;
+            padding: 24px 20px;
+            width: 220px;
+            text-align: center;
+            transition: 0.2s;
+            border: 1px solid #e9edf2;
+        }
+        .mentor-avatar {
+            background: linear-gradient(145deg, #e2e8f0, #f1f5f9);
+            width: 100px;
+            height: 100px;
+            border-radius: 100px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 18px;
+            font-size: 3rem;
+            color: #2c5282;
+        }
+        .mentor-name {
+            font-weight: 800;
+            font-size: 1.1rem;
+        }
+        .mentor-science {
+            font-size: 0.8rem;
+            color: #2a5298;
+            margin-top: 6px;
+            font-weight: 500;
+        }
+
+        /* projects showcase */
+        .projects-showcase {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 28px;
+            margin: 32px 0;
+        }
+        .project-item {
+            background: #ffffffdd;
+            backdrop-filter: blur(2px);
+            background: white;
+            border-radius: 28px;
+            padding: 20px;
+            border: 1px solid #dee4ec;
+        }
+        .project-title {
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        /* publication list */
+        .publication-list {
+            background: #f1f5f9;
+            border-radius: 36px;
+            padding: 24px 32px;
+            margin: 32px 0;
+        }
+        .pub-item {
+            display: flex;
+            gap: 20px;
+            padding: 16px 0;
+            border-bottom: 1px solid #cbd5e1;
+            align-items: baseline;
+            flex-wrap: wrap;
+        }
+        .pub-year {
+            font-weight: 800;
+            color: #1e3c72;
+            min-width: 70px;
+        }
+
+        /* join form */
+        .join-section {
+            background: linear-gradient(115deg, #0b2b3b, #103a4b);
+            border-radius: 48px;
+            padding: 56px 48px;
+            color: white;
+            margin: 64px 0;
+        }
+        .join-flex {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 48px;
+            justify-content: space-between;
+        }
+        .join-text h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .join-form {
+            flex: 1;
+            background: rgba(255,255,255,0.08);
+            backdrop-filter: blur(4px);
+            padding: 32px;
+            border-radius: 36px;
+        }
+        .join-form input, .join-form select {
+            width: 100%;
+            padding: 14px 18px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 60px;
+            background: #fefcf5;
+            font-family: inherit;
+        }
+        .join-form button {
+            background: #f5b042;
+            border: none;
+            width: 100%;
+            padding: 14px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1rem;
+            color: #1e2a3a;
+            cursor: pointer;
+            margin-top: 12px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid #e2e8f0;
+            margin-top: 20px;
+            color: #475569;
+        }
+        .social-icons a {
+            color: #2a5298;
+            font-size: 1.3rem;
+            margin: 0 10px;
+        }
+        @media (max-width: 800px) {
+            .container { padding: 0 24px; }
+            .hero { padding: 36px 24px; }
+            .hero-text h2 { font-size: 2.2rem; }
+            .navbar { flex-direction: column; }
+        }
+        .fade-up {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.5s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .events-scroll::-webkit-scrollbar {
+            height: 6px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <!-- Navigation -->
+    <div class="navbar">
+        <div class="logo">
+            <h1>🔬 Научное сообщество</h1>
+            <p>Лицей им. Имя · Исследовательский кластер</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#">Главная</a></li>
+            <li><a href="#research">Направления</a></li>
+            <li><a href="#events">События</a></li>
+            <li><a href="#mentors">Наставники</a></li>
+            <li><a href="#publications">Публикации</a></li>
+        </ul>
+        <button class="btn-outline-nav" id="joinNowBtn">Вступить в сообщество</button>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-text">
+            <div class="hero-badge"><i class="fas fa-microscope"></i>  научное общество лицея</div>
+            <h2>Создаём будущее <br> через исследования и открытия</h2>
+            <p>Сообщество юных исследователей, инженеров и аналитиков. Проекты, конференции, наставничество от учёных и партнёрство с вузами.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="document.getElementById('joinFormBlock').scrollIntoView({behavior:'smooth'});">Стать участником <i class="fas fa-rocket"></i></button>
+                <button class="btn-secondary" onclick="alert('📄 Устав и регламент сообщества доступны по запросу в каб. 204')">Узнать о секциях</button>
+            </div>
+            <div class="hero-stats">
+                <div><span>12+</span><br>научных секций</div>
+                <div><span>45+</span><br>активных проектов</div>
+                <div><span>9</span><br>партнёров-вузов</div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-dna"></i>
+        </div>
+    </div>
+
+    <!-- Research directions -->
+    <div id="research" style="scroll-margin-top: 90px;">
+        <div class="section-header">
+            <div class="section-title">📚 Исследовательские кластеры</div>
+            <div class="section-sub">Выбери направление, которое зажигает твой интерес — от квантовой физики до нейросетей</div>
+        </div>
+        <div class="cards-grid">
+            <div class="research-card"><div class="card-icon"><i class="fas fa-atom"></i></div><h3>Физика и инженерия</h3><p>Квантовые материалы, робототехника, аэрокосмические модели. Лаборатория «Фотон».</p><div class="tag">3 проекта в 2026</div></div>
+            <div class="research-card"><div class="card-icon"><i class="fas fa-brain"></i></div><h3>Нейротех & AI</h3><p>Машинное обучение, анализ данных, нейроинтерфейсы. Сотрудничество с IT-кластером.</p><div class="tag">хакатоны каждую четверть</div></div>
+            <div class="research-card"><div class="card-icon"><i class="fas fa-leaf"></i></div><h3>Биомедицина и экология</h3><p>Генетика, урбанистическая экология, биотех. Полевые исследования и партнёрство с медвузами.</p><div class="tag">лаборатория BioLab</div></div>
+            <div class="research-card"><div class="card-icon"><i class="fas fa-chart-line"></i></div><h3>Социо-гуманитарные исследования</h3><p>Цифровая история, социология города, когнитивная психология. Междисциплинарные стартапы.</p><div class="tag">urban studies</div></div>
+        </div>
+    </div>
+
+    <!-- Events & conferences (календарь событий) -->
+    <div id="events" style="scroll-margin-top: 90px;">
+        <div class="section-header">
+            <div class="section-title">🗓️ Календарь науки</div>
+            <div class="section-sub">Конференции, мастер-классы и защиты проектов — стань частью научной жизни</div>
+        </div>
+        <div class="events-scroll">
+            <div class="event-card"><div class="event-date"><i class="far fa-calendar-alt"></i> 12–14 апреля 2026</div><div class="event-title">X Лицейская научная конференция «Грани познания»</div><div>Секционные заседания, постерная сессия, keynote от профессора МФТИ.</div><div class="event-location"><i class="fas fa-location-dot"></i> Актовый зал, корпус А</div></div>
+            <div class="event-card"><div class="event-date"><i class="far fa-calendar-alt"></i> 2 мая 2026</div><div class="event-title">Мастер-класс «Современная спектроскопия»</div><div>Практикум в физической лаборатории с оборудованием вуза-партнёра.</div><div class="event-location"><i class="fas fa-flask"></i> Научный блок, этаж 3</div></div>
+            <div class="event-card"><div class="event-date"><i class="far fa-calendar-alt"></i> 18 мая 2026</div><div class="event-title">Хакатон AI for Good</div><div>Разработка проектов с использованием нейросетей для социальных задач.</div><div class="event-location"><i class="fas fa-laptop-code"></i> IT-полигон</div></div>
+            <div class="event-card"><div class="event-date"><i class="far fa-calendar-alt"></i> 5–7 июня 2026</div><div class="event-title">Летняя исследовательская школа</div><div>Выездной интенсив с учёными МГУ, проектные смены.</div><div class="event-location"><i class="fas fa-campground"></i> Научный кампус «Созвездие»</div></div>
+        </div>
+    </div>
+
+    <!-- Mentors & scientists -->
+    <div id="mentors" style="scroll-margin-top: 90px;">
+        <div class="section-header">
+            <div class="section-title">👩‍🔬 Научные наставники</div>
+            <div class="section-sub">Учёные, педагоги-исследователи и эксперты из индустрии</div>
+        </div>
+        <div class="mentors-grid">
+            <div class="mentor-card"><div class="mentor-avatar"><i class="fas fa-user-astronaut"></i></div><div class="mentor-name">Проф. Александр Белов</div><div class="mentor-science">к.ф.-м.н., физика конденсированного состояния</div></div>
+            <div class="mentor-card"><div class="mentor-avatar"><i class="fas fa-microchip"></i></div><div class="mentor-name">Дарья Ветрова</div><div class="mentor-science">AI-исследователь, руководитель DataLab</div></div>
+            <div class="mentor-card"><div class="mentor-avatar"><i class="fas fa-dove"></i></div><div class="mentor-name">Евгений Серов</div><div class="mentor-science">молекулярный биолог, PhD (BioMed)</div></div>
+            <div class="mentor-card"><div class="mentor-avatar"><i class="fas fa-chalkboard"></i></div><div class="mentor-name">Ирина Морозова</div><div class="mentor-science">историк, руководитель гуманитарной секции</div></div>
+        </div>
+    </div>
+
+    <!-- Student projects showcase -->
+    <div>
+        <div class="section-header">
+            <div class="section-title">🏆 Проекты лицеистов</div>
+            <div class="section-sub">Исследования, которые уже получили признание на всероссийском уровне</div>
+        </div>
+        <div class="projects-showcase">
+            <div class="project-item"><i class="fas fa-microchip" style="font-size: 2rem; color:#2a5298;"></i><div class="project-title">Низкотемпературный датчик</div><p>Разработка сенсора для экологического мониторинга, призёры «Шаг в будущее».</p></div>
+            <div class="project-item"><i class="fas fa-chart-simple" style="font-size: 2rem; color:#2a5298;"></i><div class="project-title">Анализ городского шума</div><p>Цифровая модель шумового загрязнения района с применением ML.</p></div>
+            <div class="project-item"><i class="fas fa-book-open" style="font-size: 2rem; color:#2a5298;"></i><div class="project-title">«Архив памяти»</div><p>Оцифровка и реконструкция исторических документов региона.</p></div>
+        </div>
+    </div>
+
+    <!-- Publications & proceedings -->
+    <div id="publications" style="scroll-margin-top: 90px;">
+        <div class="section-header">
+            <div class="section-title">📄 Публикации и тезисы</div>
+            <div class="section-sub">Ежегодный сборник «Лицейский вестник науки» и статьи в партнёрских изданиях</div>
+        </div>
+        <div class="publication-list">
+            <div class="pub-item"><span class="pub-year">2026</span><span>Влияние микропластика на водные экосистемы — Петрова А., 10 класс (в печати)</span></div>
+            <div class="pub-item"><span class="pub-year">2025</span><span>Разработка алгоритма кластеризации спектральных данных — Смирнов Д., 11 класс, журнал «Юный исследователь»</span></div>
+            <div class="pub-item"><span class="pub-year">2025</span><span>Цифровая модель распространения тепла в городской среде — коллектив 10И, при поддержке МГСУ</span></div>
+            <div class="pub-item"><span class="pub-year">2024</span><span>Сборник тезисов конференции «Старт в науку» — 24 работы учащихся лицея</span></div>
+        </div>
+    </div>
+
+    <!-- Join community form -->
+    <div id="joinFormBlock" class="join-section" style="scroll-margin-top: 90px;">
+        <div class="join-flex">
+            <div class="join-text">
+                <h3><i class="fas fa-flask"></i> Стань частью научного сообщества</h3>
+                <p>Заполни анкету — и куратор свяжется с тобой для выбора секции и научного руководителя. Открыто для учеников 8–11 классов.</p>
+                <div style="margin-top: 24px;"><i class="fas fa-check-circle"></i> Доступ к лабораториям</div>
+                <div><i class="fas fa-check-circle"></i> Наставничество и сопровождение проектов</div>
+                <div><i class="fas fa-check-circle"></i> Участие в конференциях за счёт лицея</div>
+            </div>
+            <div class="join-form">
+                <h3>✍️ Заявка на вступление</h3>
+                <form id="scienceJoinForm">
+                    <input type="text" placeholder="ФИО" required id="fullName">
+                    <input type="text" placeholder="Класс (например, 10А)" required id="classGrade">
+                    <select id="directionSelect">
+                        <option value="">Выбери научное направление</option>
+                        <option>Физика и инженерия</option>
+                        <option>Нейротех & AI</option>
+                        <option>Биомедицина и экология</option>
+                        <option>Социо-гуманитарные исследования</option>
+                    </select>
+                    <input type="email" placeholder="Email для связи" required>
+                    <button type="submit">Отправить заявку <i class="fas fa-paper-plane"></i></button>
+                </form>
+                <p style="font-size: 0.7rem; margin-top: 14px;">После отправки вы получите приглашение на вводную встречу.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-telegram"></i></a>
+            <a href="#"><i class="fab fa-vk"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
+        </div>
+        <p>© 2026 Научное сообщество Лицея им. Имя — пространство для юных исследователей</p>
+        <p style="margin-top: 8px;">Все права защищены | Партнёрская сеть: МФТИ, МГУ, Сколтех</p>
+    </footer>
+</div>
+
+<script>
+    // плавные появления при скролле
+    const fadeElements = document.querySelectorAll('.research-card, .event-card, .mentor-card, .project-item, .pub-item');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+                observer.unobserve(entry.target);
+            }
+        });
+    }, { threshold: 0.1 });
+    fadeElements.forEach(el => {
+        el.classList.add('fade-up');
+        observer.observe(el);
+    });
+
+    // форма вступления
+    const joinForm = document.getElementById('scienceJoinForm');
+    if (joinForm) {
+        joinForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const name = document.getElementById('fullName')?.value || 'участник';
+            alert(`✨ Спасибо, ${name}! Ваша заявка принята. Куратор сообщества свяжется с вами в течение 2 дней. Добро пожаловать в науку!`);
+            joinForm.reset();
+        });
+    }
+
+    // кнопка навигации
+    document.getElementById('joinNowBtn')?.addEventListener('click', () => {
+        document.getElementById('joinFormBlock')?.scrollIntoView({ behavior: 'smooth' });
+    });
+
+    // добавим эффект для всех карточек (видимые сразу)
+    setTimeout(() => {
+        fadeElements.forEach(el => {
+            if (el.getBoundingClientRect().top < window.innerHeight - 80) {
+                el.classList.add('visible');
+            }
+        });
+    }, 200);
+</script>
+</body>
+</html>
